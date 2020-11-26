@@ -1,7 +1,7 @@
 # simple-cookie-client
 
-![ci_on_commit](https://github.com/whodisio/simple-cookie-client/workflows/ci_on_commit/badge.svg)
-![deploy_on_tag](https://github.com/whodisio/simple-cookie-client/workflows/deploy_on_tag/badge.svg)
+![ci_on_commit](https://github.com/uladkasach/simple-cookie-client/workflows/ci_on_commit/badge.svg)
+![deploy_on_tag](https://github.com/uladkasach/simple-cookie-client/workflows/deploy_on_tag/badge.svg)
 
 Simple and isomorphic cookie api, with support for hybrid client-side and server-side rendering applications.
 
