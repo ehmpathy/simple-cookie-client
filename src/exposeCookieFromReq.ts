@@ -9,8 +9,9 @@ import { setExposedCookie } from './stores/exposedCookieStore';
  * this supports any SSR implementation that has a req object with a 'cookie' header, but explicitly supports:
  * - Next.JS
  *
- * NOTE: this method needs to be updated to support environments when more than one request is handled in the same context at the same time.
- * - this does _not_ affect lambda (aws-lambda, serverless) environments, those work fine
+ * this method only supports environments where at most one request is being evaluated at a time per `runtime-context`.
+ * - this is because it uses a shared in-memory cache for the environment
+ * - this supports serverless environments like aws-lambda, since lambdas may reuse-containers but never at the same time
  */
 export const exposeCookieFromReq = ({
   name,
@@ -24,17 +25,18 @@ export const exposeCookieFromReq = ({
    * the request payload, with headers which contain the cookie
    */
   req: { headers: { cookie?: string } };
-}) => {
+}): void => {
   // grab the cookie header from the request
   const cookieHeader = req.headers.cookie;
-  if (!cookieHeader) return; // bail here if cookie header was not set
+  if (!cookieHeader) return setExposedCookie(name, null); // cookie is null if no cookies were defined
 
   // parse the cookie header into individual cookies
   const cookies = getCookiesFromString(cookieHeader);
 
   // find the specific cookie of interest
   const cookieOfInterest = cookies[name];
+  if (!cookieOfInterest) return setExposedCookie(name, null); // cookie is null if it wasn't defined
 
   // otherwise, expose it it
-  setExposedCookie(name, cookieOfInterest ?? null); // save as null if the cookie is not defined in the request, to make sure no shared state between requests
+  return setExposedCookie(name, cookieOfInterest);
 };
