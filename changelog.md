@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.2.1](https://www.github.com/ehmpathy/simple-cookie-client/compare/v0.2.0...v0.2.1) (2022-10-05)
+
+
+### Bug Fixes
+
+* **exports:** expose the castCookiesToString method ([e4b6722](https://www.github.com/ehmpathy/simple-cookie-client/commit/e4b6722921b68f5252d9086ff51dea1b94c71b81))
+
 ## [0.2.0](https://www.github.com/ehmpathy/simple-cookie-client/compare/v0.1.2...v0.2.0) (2022-10-05)
 
 
