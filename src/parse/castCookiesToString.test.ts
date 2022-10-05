@@ -6,8 +6,13 @@ describe('castCookiesToString', () => {
     const string = castCookiesToString([
       new Cookie({ name: '_ga', value: '123' }),
       new Cookie({ name: 'authorization', value: 'opensaysame' }),
-      new Cookie({ name: '__utma', value: '10102256.1994221130.1664978497.1664978497.1664978497.1' }),
+      new Cookie({
+        name: '__utma',
+        value: '10102256.1994221130.1664978497.1664978497.1664978497.1',
+      }),
     ]);
-    expect(string).toEqual('_ga=123; authorization=opensaysame; __utma=10102256.1994221130.1664978497.1664978497.1664978497.1');
+    expect(string).toEqual(
+      '_ga=123; authorization=opensaysame; __utma=10102256.1994221130.1664978497.1664978497.1664978497.1',
+    );
   });
 });

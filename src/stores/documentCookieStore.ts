@@ -1,7 +1,10 @@
 import { getCookiesFromString } from '../parse/getCookiesFromString';
 
 const assertDocumentIsDefined = () => {
-  if (!document) throw new Error('getDocumentCookie was called in an environment where document is not defined'); // fail fast
+  if (!document)
+    throw new Error(
+      'getDocumentCookie was called in an environment where document is not defined',
+    ); // fail fast
 };
 
 /**

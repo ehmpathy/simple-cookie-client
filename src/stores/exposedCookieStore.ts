@@ -6,7 +6,10 @@ const { set, get } = createCache({ defaultSecondsUntilExpiration: Infinity }); /
 /**
  * set a cookie to the in-memory internal cache of "exposed" cookies
  */
-export const setExposedCookie: (name: string, value: Cookie | null) => void = set;
+export const setExposedCookie: (
+  name: string,
+  value: Cookie | null,
+) => void = set;
 
 /**
  * get a cookie from the in-memory internal cache of "exposed" cookies
