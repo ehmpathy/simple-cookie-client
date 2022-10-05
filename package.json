@@ -4,8 +4,8 @@
   "description": "Simple and isomorphic cookie api, with support for hybrid client-side and server-side rendering applications.",
   "author": "UladKasach @uladkasach",
   "license": "MIT",
-  "repository": "uladkasach/simple-cookie-client",
-  "homepage": "https://github.com/uladkasach/simple-cookie-client",
+  "repository": "ehmpathy/simple-cookie-client",
+  "homepage": "https://github.com/ehmpathy/simple-cookie-client",
   "keywords": [
     "cookie",
     "server-side-rendering",
@@ -14,7 +14,7 @@
     "next.js",
     "browser"
   ],
-  "bugs": "https://github.com/uladkasach/simple-cookie-client/issues",
+  "bugs": "https://github.com/ehmpathy/simple-cookie-client/issues",
   "main": "dist/index.js",
   "engines": {
     "node": ">=8.0.0"
