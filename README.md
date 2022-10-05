@@ -49,7 +49,21 @@ _Supports both browser and server side env._
 import { getCookiesFromString } from 'simple-cookie-client';
 
 const cookies = getCookiesFromString('authorization=abc; _ga=123') // => [Cookie({ name: 'authorization', value: 'abc'}), Cookie({ name: '_ga', value: '123' })]
+expect(cookies.length).toEqual(2);
 ```
+
+### casting cookies into a cookie header string
+
+```ts
+const string = castCookiesToString([
+  new Cookie({ name: '_ga', value: '123' }),
+  new Cookie({ name: 'authorization', value: 'opensaysame' }),
+]);
+expect(string).toEqual(
+  '_ga=123; authorization=opensaysame;',
+);
+```
+
 
 # server side rendering support
 
