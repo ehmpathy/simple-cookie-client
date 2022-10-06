@@ -1,3 +1,4 @@
+export { CookieStorageMechanism } from './stores/storageMechanismSelection';
 export { Cookie } from './domain/Cookie';
 export { deleteCookie } from './deleteCookie';
 export { exposeCookieFromReq } from './exposeCookieFromReq';
