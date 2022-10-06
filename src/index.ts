@@ -7,4 +7,3 @@ export { castCookiesToCookieHeaderString } from './parse/castCookiesToCookieHead
 export { getCookieFromSetCookieHeaderString } from './parse/getCookieFromSetCookieHeaderString';
 export { getCookiesFromCookieHeaderString } from './parse/getCookiesFromCookieHeaderString';
 export { getCookiesFromHeader } from './parse/getCookiesFromHeader';
-export { mergeCookies } from './parse/mergeCookies';

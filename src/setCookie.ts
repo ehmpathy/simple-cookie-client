@@ -1,18 +1,44 @@
+import { serialize } from 'domain-objects';
 import { documentIsDefined } from './env/documentIsDefined';
 import { setDocumentCookie } from './stores/documentCookieStore';
-import { setExposedCookie } from './stores/exposedCookieStore';
+import { setInMemoryCookie } from './stores/inMemoryCookieStore';
 import { Cookie } from './domain/Cookie';
+import {
+  CookieStorageMechanism,
+  CookieStorageChoice,
+  shouldStoreInBrowser,
+  shouldStoreInCustom,
+  shouldStoreInMemory,
+} from './stores/storageMechanismSelection';
 
 /**
- * sets the cookie to
- * - the browser, if in browser env, through document api
- * - the in-memory exposed-cookies store (for SSR support)
+ * saves the cookie to the specified cookie storage mechanism
+ *
+ * default storage mechanism is `AUTO`
+ * - if available, browser.document.cookie
+ * - and always, in-memory
  */
-export const setCookie = ({ name, value }: { name: string; value: string }) => {
-  // delete from the document, if any (NOTE: will not be able to delete HTTPOnly cookies, since js can't access or know about those)
-  if (documentIsDefined())
-    setDocumentCookie(name, value, 'expires=Thu, 01 Jan 1970 00:00:00 GMT'); // only way to delete it is to expire it;
+export const setCookie = async ({
+  name,
+  value,
+  storage = { mechanism: CookieStorageMechanism.AUTO },
+}: {
+  name: string;
+  value: string;
+  storage?: CookieStorageChoice;
+}) => {
+  // set the cookie to browser.document storage, if possible and requested
+  if (documentIsDefined() && shouldStoreInBrowser(storage))
+    setDocumentCookie(name, value, 'expires=Thu, 01 Jan 2100 00:00:00 GMT'); // TODO: support expiration times. for now, never expires
 
-  // delete from the exposed cache, in case it was there
-  setExposedCookie(name, new Cookie({ name, value }));
+  // set the cookie to in-memory storage, if requested
+  if (shouldStoreInMemory(storage))
+    setInMemoryCookie(name, new Cookie({ name, value }));
+
+  // set the cookie to custom storage, if requested
+  if (shouldStoreInCustom(storage))
+    await storage.implementation.set(
+      name,
+      serialize(new Cookie({ name, value })),
+    );
 };

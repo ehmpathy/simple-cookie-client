@@ -1,6 +1,7 @@
 import { castCookiesArrayToNameToCookieMap } from './parse/castCookiesArrayToNameToCookieMap';
 import { getCookiesFromCookieHeaderString } from './parse/getCookiesFromCookieHeaderString';
-import { setExposedCookie } from './stores/exposedCookieStore';
+import { setInMemoryCookie } from './stores/inMemoryCookieStore';
+import { CookieStorageMechanism } from './stores/storageMechanismSelection';
 
 /**
  * extracts the value of a particular cookie from the request object and exposes it so that anyone can 'getCookie' on it, regardless of env
@@ -26,10 +27,15 @@ export const exposeCookieFromReq = ({
    * the request payload, with headers which contain the cookie
    */
   req: { headers: { cookie?: string } };
+
+  /**
+   * only the IN_MEMORY mechanism is supported for this function
+   */
+  storage?: { mechanism: CookieStorageMechanism.IN_MEMORY };
 }): void => {
   // grab the cookie header from the request
   const cookieHeader = req.headers.cookie;
-  if (!cookieHeader) return setExposedCookie(name, null); // cookie is null if no cookies were defined
+  if (!cookieHeader) return setInMemoryCookie(name, null); // cookie is null if no cookies were defined
 
   // parse the cookie header into individual cookies
   const cookies = getCookiesFromCookieHeaderString(cookieHeader);
@@ -37,8 +43,8 @@ export const exposeCookieFromReq = ({
 
   // find the specific cookie of interest
   const cookieOfInterest = cookiesMap[name];
-  if (!cookieOfInterest) return setExposedCookie(name, null); // cookie is null if it wasn't defined
+  if (!cookieOfInterest) return setInMemoryCookie(name, null); // cookie is null if it wasn't defined
 
   // otherwise, expose it it
-  return setExposedCookie(name, cookieOfInterest);
+  return setInMemoryCookie(name, cookieOfInterest);
 };
