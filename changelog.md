@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.3.0](https://www.github.com/ehmpathy/simple-cookie-client/compare/v0.2.1...v0.3.0) (2022-10-06)
+
+
+### Features
+
+* **parse:** getCookiesFromSetHeader, mergeCookies, getCookiesFromSetHeaderString ([7fe40a3](https://www.github.com/ehmpathy/simple-cookie-client/commit/7fe40a353e58038cea118a39836344b71a2fe230))
+* **storage:** support custom storage mechanisms, solving [#3](https://www.github.com/ehmpathy/simple-cookie-client/issues/3) ([17c8362](https://www.github.com/ehmpathy/simple-cookie-client/commit/17c8362e3a12323a03556d2a775efad4d9b7dcf6))
+
+
+### Bug Fixes
+
+* **exports:** export CookieStorageMechanism type ([1a5898a](https://www.github.com/ehmpathy/simple-cookie-client/commit/1a5898ac8560f08e62c6ff0ad7d178c232828e88))
+* **tests:** await getCookie in unit test ([738f48b](https://www.github.com/ehmpathy/simple-cookie-client/commit/738f48b88b7e50876bc1a5a83c52a1d5e67b9a84))
+* **tsconfig:** update lib to support .flat() ([ae65ded](https://www.github.com/ehmpathy/simple-cookie-client/commit/ae65dedd2c5395e1c4158a24ad5d69a5dc0f6aa1))
+
 ### [0.2.1](https://www.github.com/ehmpathy/simple-cookie-client/compare/v0.2.0...v0.2.1) (2022-10-05)
 
 
