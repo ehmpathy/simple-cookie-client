@@ -1,9 +1,9 @@
 import { Cookie } from '../domain/Cookie';
-import { castCookiesToString } from './castCookiesToString';
+import { castCookiesToCookieHeaderString } from './castCookiesToCookieHeaderString';
 
 describe('castCookiesToString', () => {
   it('should be able to cast cookies to cookies string', () => {
-    const string = castCookiesToString([
+    const string = castCookiesToCookieHeaderString([
       new Cookie({ name: '_ga', value: '123' }),
       new Cookie({ name: 'authorization', value: 'opensaysame' }),
       new Cookie({

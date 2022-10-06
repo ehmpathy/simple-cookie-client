@@ -1,4 +1,5 @@
-import { getCookiesFromString } from '../parse/getCookiesFromString';
+import { castCookiesArrayToNameToCookieMap } from '../parse/castCookiesArrayToNameToCookieMap';
+import { getCookiesFromCookieHeaderString } from '../parse/getCookiesFromCookieHeaderString';
 
 const assertDocumentIsDefined = () => {
   if (!document)
@@ -12,8 +13,9 @@ const assertDocumentIsDefined = () => {
  */
 export const getDocumentCookie = (name: string) => {
   assertDocumentIsDefined();
-  const cookies = getCookiesFromString(document.cookie);
-  if (cookies[name]) return cookies[name];
+  const cookies = getCookiesFromCookieHeaderString(document.cookie);
+  const cookiesMap = castCookiesArrayToNameToCookieMap({ cookies });
+  if (cookiesMap[name]) return cookiesMap[name];
   return null;
 };
 

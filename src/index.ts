@@ -1,7 +1,10 @@
+export { Cookie } from './domain/Cookie';
 export { deleteCookie } from './deleteCookie';
 export { exposeCookieFromReq } from './exposeCookieFromReq';
 export { getCookie } from './getCookie';
 export { setCookie } from './setCookie';
-export { getCookiesFromString } from './parse/getCookiesFromString';
-export { castCookiesToString } from './parse/castCookiesToString';
-export { Cookie } from './domain/Cookie';
+export { castCookiesToCookieHeaderString } from './parse/castCookiesToCookieHeaderString';
+export { getCookieFromSetCookieHeaderString } from './parse/getCookieFromSetCookieHeaderString';
+export { getCookiesFromCookieHeaderString } from './parse/getCookiesFromCookieHeaderString';
+export { getCookiesFromHeader } from './parse/getCookiesFromHeader';
+export { mergeCookies } from './parse/mergeCookies';

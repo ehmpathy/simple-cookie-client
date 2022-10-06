@@ -1,4 +1,5 @@
-import { getCookiesFromString } from './parse/getCookiesFromString';
+import { castCookiesArrayToNameToCookieMap } from './parse/castCookiesArrayToNameToCookieMap';
+import { getCookiesFromCookieHeaderString } from './parse/getCookiesFromCookieHeaderString';
 import { setExposedCookie } from './stores/exposedCookieStore';
 
 /**
@@ -31,10 +32,11 @@ export const exposeCookieFromReq = ({
   if (!cookieHeader) return setExposedCookie(name, null); // cookie is null if no cookies were defined
 
   // parse the cookie header into individual cookies
-  const cookies = getCookiesFromString(cookieHeader);
+  const cookies = getCookiesFromCookieHeaderString(cookieHeader);
+  const cookiesMap = castCookiesArrayToNameToCookieMap({ cookies });
 
   // find the specific cookie of interest
-  const cookieOfInterest = cookies[name];
+  const cookieOfInterest = cookiesMap[name];
   if (!cookieOfInterest) return setExposedCookie(name, null); // cookie is null if it wasn't defined
 
   // otherwise, expose it it
