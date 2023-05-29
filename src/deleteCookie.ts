@@ -1,3 +1,4 @@
+import { isPresent } from 'type-fns';
 import { documentIsDefined } from './env/documentIsDefined';
 import { setDocumentCookie } from './stores/documentCookieStore';
 import { setInMemoryCookie } from './stores/inMemoryCookieStore';
@@ -17,6 +18,7 @@ import {
 export const deleteCookie = ({
   name,
   domain,
+  path,
   storage = { mechanism: CookieStorageMechanism.AUTO },
 }: {
   /**
@@ -30,6 +32,11 @@ export const deleteCookie = ({
   domain?: string;
 
   /**
+   * allow specifying the path under which to delete the cookie
+   */
+  path?: string;
+
+  /**
    * allow specifying which storage mechanism to use for this operation
    */
   storage?: CookieStorageChoice;
@@ -41,8 +48,11 @@ export const deleteCookie = ({
       '',
       [
         'expires=Thu, 01 Jan 1970 00:00:00 GMT', // only way to delete it is to expire it
-        domain ? `Domain=${domain}` : '', // allow specifying the domain
-      ].join(';'),
+        domain ? `Domain=${domain}` : null, // allow specifying the domain
+        path ? `Path=${path}` : null, // allow specifying the path
+      ]
+        .filter(isPresent)
+        .join(';'),
     );
 
   // delete the cookie from in-memory storage, if requested
