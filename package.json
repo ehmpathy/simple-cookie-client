@@ -55,7 +55,7 @@
     "uuid": "^3.3.3"
   },
   "dependencies": {
-    "domain-objects": "^0.5.4",
+    "domain-objects": "^0.10.4",
     "simple-in-memory-cache": "^0.1.0"
   }
 }

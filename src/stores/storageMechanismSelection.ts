@@ -34,8 +34,8 @@ export enum CookieStorageMechanism {
 }
 
 export interface CustomCookieStorageMechanismImplementation {
-  get: (key: string) => Promise<string>;
-  set: (key: string, value: string | undefined) => Promise<void>;
+  get: (key: string) => string | null;
+  set: (key: string, value: string | undefined) => void;
 }
 
 export type CookieStorageChoice =

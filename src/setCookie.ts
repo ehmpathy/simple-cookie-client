@@ -18,7 +18,7 @@ import {
  * - if available, browser.document.cookie
  * - and always, in-memory
  */
-export const setCookie = async ({
+export const setCookie = ({
   name,
   value,
   storage = { mechanism: CookieStorageMechanism.AUTO },
@@ -26,10 +26,14 @@ export const setCookie = async ({
   name: string;
   value: string;
   storage?: CookieStorageChoice;
-}) => {
+}): void => {
   // set the cookie to browser.document storage, if possible and requested
   if (documentIsDefined() && shouldStoreInBrowser(storage))
-    setDocumentCookie(name, value, 'expires=Thu, 01 Jan 2100 00:00:00 GMT'); // TODO: support expiration times. for now, never expires
+    setDocumentCookie(
+      name,
+      value,
+      'expires=Thu, 01 Jan 2100 00:00:00 GMT', // TODO: support expiration times. for now, never expires
+    );
 
   // set the cookie to in-memory storage, if requested
   if (shouldStoreInMemory(storage))
@@ -37,8 +41,5 @@ export const setCookie = async ({
 
   // set the cookie to custom storage, if requested
   if (shouldStoreInCustom(storage))
-    await storage.implementation.set(
-      name,
-      serialize(new Cookie({ name, value })),
-    );
+    storage.implementation.set(name, serialize(new Cookie({ name, value })));
 };
