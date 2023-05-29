@@ -10,6 +10,8 @@
     "sourceMap": true,
     "outDir": "dist",
     "rootDir": "src",
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
     "lib": [
       "dom",
       "es2019"
@@ -21,7 +23,8 @@
   "exclude": [
     "src/**/*.test.ts",
     "src/**/*.test.integration.ts",
-    "**/__test_utils__/**/*.ts"
+    "**/__test_utils__/**/*.ts",
+    "node_modules"
   ],
   "atom": {
     "rewriteTsconfig": false

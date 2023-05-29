@@ -10,6 +10,7 @@
     "sourceMap": true,
     "outDir": "dist",
     "strictPropertyInitialization": false,
+    "skipLibCheck": true,
     "lib": [
       "dom",
       "es2019",
