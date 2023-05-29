@@ -1,5 +1,15 @@
 # Changelog
 
+### [0.3.1](https://www.github.com/ehmpathy/simple-cookie-client/compare/v0.3.0...v0.3.1) (2023-05-29)
+
+
+### Bug Fixes
+
+* **contract:** remove async custom storage mechanism support ([6a4c52d](https://www.github.com/ehmpathy/simple-cookie-client/commit/6a4c52d891a936fd3fd15cb2b66fbcfd594aa727))
+* **deps:** update deps to enable building again ([78eddc2](https://www.github.com/ehmpathy/simple-cookie-client/commit/78eddc2e9d4a46ecd7c97f1da20a54f09b2c23f5))
+* **writes:** allow specifying domain of cookie on write ([d933173](https://www.github.com/ehmpathy/simple-cookie-client/commit/d93317352a39dfed8f5d47c8a2c3c53ab81f8bda))
+* **writes:** allow specifying path of cookie on write ([ec99325](https://www.github.com/ehmpathy/simple-cookie-client/commit/ec99325934e4bbecb786d45dff1d2e01f339176c))
+
 ## [0.3.0](https://www.github.com/ehmpathy/simple-cookie-client/compare/v0.2.1...v0.3.0) (2022-10-06)
 
 
