@@ -21,10 +21,12 @@ import {
 export const setCookie = ({
   name,
   value,
+  domain,
   storage = { mechanism: CookieStorageMechanism.AUTO },
 }: {
   name: string;
   value: string;
+  domain?: string;
   storage?: CookieStorageChoice;
 }): void => {
   // set the cookie to browser.document storage, if possible and requested
@@ -32,7 +34,10 @@ export const setCookie = ({
     setDocumentCookie(
       name,
       value,
-      'expires=Thu, 01 Jan 2100 00:00:00 GMT', // TODO: support expiration times. for now, never expires
+      [
+        'expires=Thu, 01 Jan 2100 00:00:00 GMT', // TODO: support expiration times. for now, never expires
+        domain ? `Domain=${domain}` : '', // allow specifying the domain
+      ].join(';'),
     );
 
   // set the cookie to in-memory storage, if requested
